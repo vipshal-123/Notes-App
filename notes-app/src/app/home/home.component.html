@@ -1,0 +1,37 @@
+<div class="container" id="container">
+  <div class="content-box" *ngFor="let note of notes let i = index">
+    <p class="date">{{ note.currentDate }}</p>
+    <p class="desc" [ngClass]="{ 'strike-text': note.showMe }">{{ note.description }}</p>
+    <div class="card-buttons">
+      <div>
+        <button type="submit" (click)="deleteNote(note)">Delete</button>
+      </div>
+      <div>
+        <button type="submit" (click)="editNote(note, i)">Edit</button>
+      </div>
+      <div class="check">
+        <input class="largerCheckbox" (change)="editCkeck(note, i)" [(ngModel)]="note.showMe" type="checkbox">
+      </div>
+    </div>
+  </div>
+
+  <div class="btn">
+    <button type="submit" (click)="toggleAddForm()">+</button>
+  </div>
+
+  <div class="overlay" *ngIf="showAddForm"></div>
+
+  <div class="overlay-box" *ngIf="showAddForm">
+    <h2>Add Note</h2>
+    <form (ngSubmit)="addNote()">
+      <p>Date</p>
+      <div class="date" type="text" name="currentDate">{{currentDate}}</div>
+      <p>Notes</p>
+      <textarea [(ngModel)]="newNote.description" name="description"></textarea>
+      <div class="end-buttons">
+        <div><button type="submit">Add</button></div>
+        <div><button type="button" (click)="cancelAddForm()">Cancel</button></div>
+      </div>
+    </form>
+  </div>
+</div>

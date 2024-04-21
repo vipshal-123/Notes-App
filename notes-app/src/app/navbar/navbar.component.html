@@ -1,0 +1,13 @@
+<div class="nav-bar">
+  <div>
+    <h2 routerLink="/">Notes</h2>
+  </div>
+  <div class="nav-search" >
+    <div class="input" [ngClass]="{ 'hide-search': isLoginPage() }">
+      <input type="search" (keyup)="searching()" id="searchs" placeholder="Search">
+    </div>
+    <div class="about" routerLink="/about">About Us</div>
+    <div class="contact" routerLink="/contact">Contact Us</div>
+    <div class="contact" routerLink="/">Log Out</div>
+  </div>
+</div>
