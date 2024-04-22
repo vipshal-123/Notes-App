@@ -10,13 +10,18 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  // initialiseUser: { email: String, password: String }[] = [];
-  useRegisterData = { email: "", password: ""}
+  useRegisterData = { email: "", password: ""};
+  confirmPassword = "";
 
   register(){
-    // this.initialiseUser.push({...this.useRegisterData});
+    if(this.useRegisterData.password !== this.confirmPassword){
+      this.useRegisterData = { email: this.useRegisterData.email, password: ""}
+      this.confirmPassword="";
+      return alert("Password does not match")
+    }
     localStorage.setItem("user",JSON.stringify(this.useRegisterData));
     alert("User Registered Sucessfully..!, Please signIn to Continue");
-    this.useRegisterData = { email: "", password: ""}
+    this.useRegisterData = { email: "", password: ""};
+    this.confirmPassword="";
   }
 }
